@@ -29,7 +29,8 @@ router.post("/register", async (req: Request, res: Response) => {
                password: hashedPassword,
             },
          });
-         res.status(200).json(createdUser);
+         const { password: _, ...userWithoutPassword } = createdUser;
+         res.status(200).json(userWithoutPassword);
       } else {
          res.status(203).json({
             error: "Name needed",
